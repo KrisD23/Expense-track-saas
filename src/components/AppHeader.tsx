@@ -1,4 +1,5 @@
 "use client";
+import { LogoutLink } from "@kinde-oss/kinde-auth-nextjs";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React from "react";
@@ -51,6 +52,7 @@ const AppHeader = () => {
           ))}
         </ul>
       </nav>
+      <LogoutLink>Logout</LogoutLink>
     </header>
   );
 };
