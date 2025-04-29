@@ -1,8 +1,13 @@
+import { addExpense } from "@/actions/actions";
+
 import React from "react";
 
 const ExpensesForm = () => {
   return (
-    <form className="flex flex-col mt-8 rounded w-full bg-white ">
+    <form
+      className="flex flex-col mt-8 rounded w-full bg-white"
+      action={addExpense}
+    >
       <input
         type="text"
         placeholder="description"
