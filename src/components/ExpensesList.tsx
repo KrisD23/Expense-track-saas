@@ -1,9 +1,14 @@
-import { prisma } from "@/lib/db";
 import React from "react";
 
-const ExpensesList = async () => {
-  const expenses = await prisma.expense.findMany();
+type ExpensesListProps = {
+  expenses: {
+    id: number;
+    description: string;
+    amount: number;
+  }[];
+};
 
+const ExpensesList = ({ expenses }: ExpensesListProps) => {
   return (
     <ul className="h-[300px] bg-white rounded mt-4 shadow-md px-2">
       {expenses.map((expense) => (
