@@ -12,3 +12,12 @@ export async function addExpense(formData: FormData) {
   });
   revalidatePath("/app/dashboard");
 }
+
+export async function deleteExpense(id: number) {
+  await prisma.expense.delete({
+    where: {
+      id: id,
+    },
+  });
+  revalidatePath("/app/dashboard");
+}

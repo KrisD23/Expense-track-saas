@@ -1,3 +1,5 @@
+"use client";
+import { deleteExpense } from "@/actions/actions";
 import React from "react";
 
 type ExpensesListProps = {
@@ -19,7 +21,12 @@ const ExpensesList = ({ expenses }: ExpensesListProps) => {
           <p>{expense.description}</p>
           <div className="flex gap-2">
             <p className="font-bold ">{expense.amount}</p>
-            <button className="text-red-500 border border-red-500 px-2">
+            <button
+              onClick={async () => {
+                await deleteExpense(expense.id);
+              }}
+              className="text-red-500 border border-red-500 px-2"
+            >
               delete
             </button>
           </div>
