@@ -7,13 +7,17 @@ import { redirect } from "next/navigation";
 
 const page = async () => {
   // auth
-  const { isAuthenticated } = getKindeServerSession();
+  const { isAuthenticated, getUser } = getKindeServerSession();
 
   if (!(await isAuthenticated())) {
     return redirect("/");
   }
-
-  const expenses = await prisma.expense.findMany();
+  const user = await getUser();
+  const expenses = await prisma.expense.findMany({
+    where: {
+      creatorId: user?.id,
+    },
+  });
 
   return (
     <div className="mt-5">

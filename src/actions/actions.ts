@@ -6,16 +6,19 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
 export async function addExpense(formData: FormData) {
-  const { isAuthenticated } = getKindeServerSession();
+  const { isAuthenticated, getUser } = getKindeServerSession();
 
   if (!(await isAuthenticated())) {
     return redirect("/");
   }
 
+  const user = await getUser();
+
   await prisma.expense.create({
     data: {
       amount: Number(formData.get("amount")),
       description: String(formData.get("description")),
+      creatorId: user.id,
     },
   });
   revalidatePath("/app/dashboard");
