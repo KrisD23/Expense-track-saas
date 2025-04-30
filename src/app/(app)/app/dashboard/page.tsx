@@ -15,6 +15,15 @@ const page = async () => {
   const user = await getUser();
 
   // authorization code
+  const membership = await prisma.memebership.findFirst({
+    where: {
+      userId: user?.id,
+    },
+  });
+
+  if (!membership || membership.status !== "ACTIVE") {
+    return redirect("/");
+  }
 
   const expenses = await prisma.expense.findMany({
     where: {
