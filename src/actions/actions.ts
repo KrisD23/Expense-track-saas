@@ -14,6 +14,10 @@ export async function addExpense(formData: FormData) {
 
   const user = await getUser();
 
+  if (!user) {
+    return redirect("/");
+  }
+
   await prisma.expense.create({
     data: {
       amount: Number(formData.get("amount")),
