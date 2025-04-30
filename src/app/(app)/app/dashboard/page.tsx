@@ -13,6 +13,9 @@ const page = async () => {
     return redirect("/");
   }
   const user = await getUser();
+
+  // authorization code
+
   const expenses = await prisma.expense.findMany({
     where: {
       creatorId: user?.id,
