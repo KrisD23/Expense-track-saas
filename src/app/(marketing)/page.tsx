@@ -4,6 +4,7 @@ import {
   LoginLink,
 } from "@kinde-oss/kinde-auth-nextjs/components";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
+import PurchaseBtn from "@/components/PurchaseBtn";
 
 const Home = async () => {
   const { isAuthenticated } = getKindeServerSession();
@@ -26,9 +27,7 @@ const Home = async () => {
               </RegisterLink>
             </>
           ) : (
-            <button className="m-3 rounded px-3 py-2 bg-blue-300 text-white font-bold hover:bg-blue-400 active:bg-blue-500">
-              Pay
-            </button>
+            <PurchaseBtn />
           )}
         </div>
       </div>
